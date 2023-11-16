@@ -1,24 +1,23 @@
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-public class EmployeeList {
-    ArrayList<Employee> employees;
+public class UserList {
+    ArrayList<User> users;
     String filename;
 
-    public EmployeeList(){
-        employees = new ArrayList<Employee>();
+    public UserList(){
+        users = new ArrayList<User>();
         filename = "employees.txt";
     }
 
-    public void addEmployee(Employee employee){
-        employees.add(employee);
+    public void addUser(User user){
+        users.add(user);
     }
 
-    public Employee findEmployee(String username) {
-        return this.employees.stream().filter(employee -> employee.getUsername().equals(username)).findFirst().orElse(null);
+    public User findUser(String username) {
+        return this.users.stream().filter(user -> user.getUsername().equals(username)).findFirst().orElse(null);
     }
 
     public void loadFromFile(){
@@ -26,7 +25,7 @@ public class EmployeeList {
             FileInputStream fileIn = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(fileIn);
 
-            employees = (ArrayList<Employee>) in.readObject();
+            users = (ArrayList<User>) in.readObject();
 
             in.close();
             fileIn.close();

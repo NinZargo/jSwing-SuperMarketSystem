@@ -4,79 +4,368 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-			"$columnSpecs": "default, labelcompgap, 51dlu, labelcompgap, 38dlu, labelcompgap, 89dlu, labelcompgap, 57dlu, labelcompgap, 28dlu"
-			"$rowSpecs": "24dlu, linegap, 21dlu, linegap, 19dlu, linegap, 44dlu, linegap, 42dlu, linegap, 28dlu, linegap, 47dlu"
+			"$columnSpecs": "30dlu, 404dlu"
+			"$rowSpecs": "24dlu, linegap, 21dlu, linegap, 215dlu, linegap, 38dlu"
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
 				name: "tabbedPane1"
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "tabbedPane1StateChanged", true ) )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-					"$rowSpecs": "20dlu, linegap, default, linegap, default, linegap, default, linegap, default, linegap, 18dlu"
-					"$columnSpecs": "37dlu, 33dlu, max(default;39dlu), 44dlu, 36dlu, 35dlu, 35dlu"
+					"$rowSpecs": "63dlu, linegap, default, linegap, default, linegap, default, linegap, default, linegap, 25dlu"
+					"$columnSpecs": "148dlu, max(default;45dlu), 21dlu, labelcompgap, 19dlu, 45dlu, 153dlu"
 				} ) {
 					name: "jLoginPanel"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "jUsernameLabel"
 						"text": "Username"
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-						"gridX": 4
+						"gridX": 3
 						"gridY": 3
 						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"gridWidth": 3
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "jUsernameTextField"
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-						"gridX": 3
+						"gridX": 2
 						"gridY": 5
-						"gridWidth": 3
+						"gridWidth": 5
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "jPasswordLabel"
 						"text": "Password"
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-						"gridX": 4
+						"gridX": 3
 						"gridY": 7
 						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"gridWidth": 3
 					} )
 					add( new FormComponent( "javax.swing.JTextField" ) {
 						name: "jPasswordTextField"
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-						"gridX": 3
+						"gridX": 2
 						"gridY": 9
-						"gridWidth": 3
+						"gridWidth": 5
 					} )
 					add( new FormComponent( "javax.swing.JButton" ) {
 						name: "jLoginButton"
 						"text": "Login"
 						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jLoginPressee", true ) )
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-						"gridX": 4
+						"gridX": 2
 						"gridY": 11
+						"gridWidth": 2
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "button4"
+						"text": "Register"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 5
+						"gridY": 11
+						"gridWidth": 2
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Login"
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-					"$columnSpecs": "29dlu, labelcompgap, 30dlu, labelcompgap, 30dlu, labelcompgap, 30dlu, labelcompgap, 30dlu, labelcompgap, 30dlu, labelcompgap, 30dlu, labelcompgap, 30dlu"
-					"$rowSpecs": "20dlu, linegap, 20dlu, linegap, 20dlu, linegap, 20dlu, linegap, 20dlu, linegap, 21dlu"
+					"$columnSpecs": "max(default;122dlu), labelcompgap, max(default;111dlu), labelcompgap, max(default;23dlu), labelcompgap, 30dlu, labelcompgap, 30dlu, labelcompgap, 13dlu, labelcompgap, 28dlu, labelcompgap, 33dlu"
+					"$rowSpecs": "6dlu, 15dlu, linegap, 20dlu, 15dlu, linegap, 20dlu, linegap, 15dlu, linegap, 20dlu, linegap, 19dlu, linegap, 19dlu, linegap, 65dlu"
 				} ) {
 					name: "panel1"
-					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "jAddProductDropdown"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JList" ) {
+							name: "list1"
+							auxiliary() {
+								"JavaCodeGenerator.customCreateCode": "new JList<>(productList);\nlist1.setCellRenderer(new ProductListCellRenderer(productList));"
+							}
+							addEvent( new FormEvent( "javax.swing.event.ListSelectionListener", "valueChanged", "list1ValueChanged", true ) )
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridHeight": 16
+						"gridWidth": 3
+						"gridY": 2
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jNameLabel"
+						"text": "Name"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridWidth": 3
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+						"gridY": 2
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Category"
 					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 						"gridX": 13
-						"gridY": 3
 						"gridWidth": 3
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+						"gridY": 2
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jNameTextField"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridY": 4
+						"gridWidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "jAddProductDropdown"
+						auxiliary() {
+							"JavaCodeGenerator.customCreateCode": "new JComboBox(ProdCat.values());"
+						}
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 13
+						"gridY": 4
+						"gridWidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jPriceLabel"
+						"text": "Price"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridY": 5
+						"gridWidth": 3
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jMaxStockLabel"
+						"text": "Max Stock"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 13
+						"gridY": 5
+						"gridWidth": 3
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jPriceTextField"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridY": 7
+						"gridWidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jMaxStockTextField"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 13
+						"gridY": 7
+						"gridWidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jMinStockLabel"
+						"text": "Min Stock"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridY": 9
+						"gridWidth": 3
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jCurrentStockLabel"
+						"text": "Current Stock"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 13
+						"gridY": 9
+						"gridWidth": 3
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jMinStockTextField"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridY": 11
+						"gridWidth": 3
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints TOP
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jCurrentStockTextField"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 13
+						"gridY": 11
+						"gridWidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jExpiryDaysLabel"
+						"text": "Expiry days:"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridY": 13
+						"gridWidth": 5
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints RIGHT
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jExpiryDaysTextField"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 13
+						"gridY": 13
+						"gridWidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "jRemoveButton"
+						"text": "Remove"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jRemoveButtonPressed", true ) )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridY": 15
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"gridWidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "jAddProductButton"
+						"text": "Add"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jAddProductPressed", true ) )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 13
+						"gridY": 15
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+						"gridWidth": 3
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "jSaveButton"
+						"text": "Save"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jSaveButtonPressed", true ) )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 7
+						"gridY": 17
+						"gridWidth": 3
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints TOP
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "jFindButton"
+						"text": "Find"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jFindButtonPressed", true ) )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 13
+						"gridY": 17
+						"gridWidth": 3
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints TOP
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Add Product"
 				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+					"$columnSpecs": "232dlu, labelcompgap, 63dlu, labelcompgap, 59dlu, labelcompgap, 117dlu"
+					"$rowSpecs": "37dlu, linegap, 28dlu, linegap, 23dlu, linegap, 18dlu, linegap, 23dlu, linegap, 95dlu"
+				} ) {
+					name: "panel2"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						add( new FormComponent( "javax.swing.JList" ) {
+							name: "list2"
+							auxiliary() {
+								"JavaCodeGenerator.customCreateCode": "new JList<>(productList);\nlist2.setCellRenderer(new ProductListCellRenderer(productList));"
+							}
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridHeight": 11
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jQuantityLabel"
+						"text": "Quantity"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 3
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jQuantityTextField"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 5
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "jAddBasketButton"
+						"text": "Add to Basket"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jAddBasketButtonPressed", true ) )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 7
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Browse Products"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
+					"$columnSpecs": "232dlu, labelcompgap, 63dlu, labelcompgap, 59dlu, labelcompgap, 117dlu"
+					"$rowSpecs": "37dlu, linegap, 28dlu, linegap, 23dlu, linegap, 18dlu, linegap, 23dlu, linegap, 21dlu, linegap, 87dlu"
+				} ) {
+					name: "panel3"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane3"
+						add( new FormComponent( "javax.swing.JList" ) {
+							name: "list3"
+							auxiliary() {
+								"JavaCodeGenerator.customCreateCode": "new JList<>(basketList);\nlist3.setCellRenderer(new ProductListCellRenderer(basketList));"
+							}
+							addEvent( new FormEvent( "javax.swing.event.ListSelectionListener", "valueChanged", "list3ValueChanged", true ) )
+						} )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridHeight": 13
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jBasketQuantityLabel"
+						"text": "Quantity"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 3
+						"hAlign": sfield com.jgoodies.forms.layout.CellConstraints CENTER
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints BOTTOM
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "jBasketQuantityTextField"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 5
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "jBasketSaveButton"
+						"text": "Save"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jBasketSaveButtonPressed", true ) )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 7
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jTotalLabel"
+						"text": "Total"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 9
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "jTotalCostLabel"
+						"text": "£00.00"
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 11
+						"vAlign": sfield com.jgoodies.forms.layout.CellConstraints TOP
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "jConfirmOrderButton"
+						"text": "Confirm Order"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jConfirmOrderButtonPressed", true ) )
+					}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
+						"gridX": 3
+						"gridY": 13
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Basket"
+				} )
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-				"gridWidth": 11
-				"gridHeight": 11
+				"gridWidth": 2
+				"gridHeight": 5
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jgoodies.forms.layout.FormLayout ) {
-				"$columnSpecs": "13dlu, labelcompgap, 203dlu, labelcompgap, 58dlu"
+				"$columnSpecs": "13dlu, labelcompgap, 355dlu, labelcompgap, 58dlu"
 				"$rowSpecs": "default"
 			} ) {
 				name: "jStatusPanel"
@@ -95,12 +384,12 @@ new FormModel {
 					"gridY": 1
 				} )
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
-				"gridY": 13
-				"gridWidth": 11
+				"gridY": 7
+				"gridWidth": 2
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 570, 385 )
+			"size": new java.awt.Dimension( 860, 515 )
 		} )
 	}
 }

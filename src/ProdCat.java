@@ -4,6 +4,7 @@ public enum ProdCat {
     Cupboard,
     Freezer,
     Meat,
+    Fruit,
     Technology,
     Book;
 }
