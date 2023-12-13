@@ -22,6 +22,8 @@ public class MainJFrame extends JPanel {
     public MainJFrame() {
 
         userList = new UserList();
+        userList.loadFromFile();
+
         currentUser = Optional.of(new User());
 
         productList = new ProductList();
@@ -32,6 +34,17 @@ public class MainJFrame extends JPanel {
 
 
         initComponents();
+
+        jTabInMemory = new java.awt.Component[5];
+
+        int nonLoginTabs = tabbedPane1.getTabCount() - 1;
+
+        for(int i = 0; i < nonLoginTabs; i++){
+            jTabInMemory[i] = (tabbedPane1.getComponentAt(1));
+            tabbedPane1.remove(1);
+        }
+
+        tabbedPane1.setSelectedIndex(0);
     }
 
     private void jLoginPressee(ActionEvent e) {
@@ -43,6 +56,19 @@ public class MainJFrame extends JPanel {
         currentUser = potential.filter(User -> User.checkAccount(username, password)).map(User -> User); // Now we can get the employee object from the Optional object
         
         jStatusLabel.setText(currentUser.map(usr -> ("Welcome " + usr.getName())).orElse("Wrong Details Entered.")); // Check if currentEmployee is NULL
+
+        if(currentUser.get().getRole().equals(Role.Owner)){
+            tabbedPane1.addTab("Add Products", jTabInMemory[0]);
+        }
+        tabbedPane1.addTab("Browse Products", jTabInMemory[1]);
+        tabbedPane1.addTab("Basket", jTabInMemory[2]);
+
+    }
+
+    private void jRegisterButtonPressed(ActionEvent e) {
+        User user = new User(jUsernameTextField.getText(), jPasswordTextField.getText(), jUsernameTextField.getText(), Role.Owner);
+        userList.addUser(user);
+        userList.saveToFile();
     }
 
     private void jAddProductPressed(ActionEvent e) {
@@ -82,7 +108,7 @@ public class MainJFrame extends JPanel {
         jMinStockTextField.setText(String.valueOf(product.getMinStock()));
 
         if(product instanceof FoodProduct foodProduct) jExpiryDaysTextField.setText(String.valueOf(foodProduct.getExpirationDays()));
-        else jExpiryDaysTextField.setText(String.valueOf("Non Food Item"));
+        else jExpiryDaysTextField.setText("Non Food Item");
 
         jAddProductDropdown.setSelectedItem(product.getCategory());
     }
@@ -154,6 +180,16 @@ public class MainJFrame extends JPanel {
 
         productList.saveToFile();
     }
+
+    private void button1(ActionEvent e) {
+        int nonLoginTabs = tabbedPane1.getTabCount() - 1;
+
+        for(int i = 0; i < nonLoginTabs; i++){
+            tabbedPane1.remove(1);
+        }
+
+        tabbedPane1.setSelectedIndex(0);
+    }
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         // Generated using JFormDesigner Educational license - Ethan Deeley (2282321)
@@ -164,7 +200,7 @@ public class MainJFrame extends JPanel {
         jPasswordLabel = new JLabel();
         jPasswordTextField = new JTextField();
         jLoginButton = new JButton();
-        button4 = new JButton();
+        jRegisterButton = new JButton();
         panel1 = new JPanel();
         scrollPane1 = new JScrollPane();
         list1 = new JList<>(productList);
@@ -238,9 +274,10 @@ public class MainJFrame extends JPanel {
                 jLoginButton.addActionListener(e -> jLoginPressee(e));
                 jLoginPanel.add(jLoginButton, CC.xywh(2, 11, 2, 1));
 
-                //---- button4 ----
-                button4.setText("Register");
-                jLoginPanel.add(button4, CC.xywh(5, 11, 2, 1));
+                //---- jRegisterButton ----
+                jRegisterButton.setText("Register");
+                jRegisterButton.addActionListener(e -> jRegisterButtonPressed(e));
+                jLoginPanel.add(jRegisterButton, CC.xywh(5, 11, 2, 1));
             }
             tabbedPane1.addTab("Login", jLoginPanel);
 
@@ -394,6 +431,7 @@ public class MainJFrame extends JPanel {
 
             //---- button1 ----
             button1.setText("LogOut");
+            button1.addActionListener(e -> button1(e));
             jStatusPanel.add(button1, CC.xy(5, 1));
         }
         add(jStatusPanel, CC.xywh(1, 7, 2, 1));
@@ -409,10 +447,11 @@ public class MainJFrame extends JPanel {
         frame.setVisible(true);
     }
 
-    private UserList userList;
+    private final UserList userList;
     private Optional<User> currentUser;
-    private ProductList productList;
-    private ProductList basketList;
+    private final ProductList productList;
+    private final ProductList basketList;
+    private java.awt.Component[] jTabInMemory;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Educational license - Ethan Deeley (2282321)
     private JTabbedPane tabbedPane1;
@@ -422,7 +461,7 @@ public class MainJFrame extends JPanel {
     private JLabel jPasswordLabel;
     private JTextField jPasswordTextField;
     private JButton jLoginButton;
-    private JButton button4;
+    private JButton jRegisterButton;
     private JPanel panel1;
     private JScrollPane scrollPane1;
     private JList list1;

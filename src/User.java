@@ -1,5 +1,7 @@
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serial;
 import java.io.Serializable;
 
 @Setter
@@ -11,6 +13,8 @@ public class User implements Serializable {
     private String Name;
     @Getter
     private Role Role;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     public User() {}
 

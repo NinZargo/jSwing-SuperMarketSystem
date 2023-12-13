@@ -1,11 +1,10 @@
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class UserList {
     ArrayList<User> users;
     String filename;
+    private static final long serialVersionUID = 1L;
 
     public UserList(){
         users = new ArrayList<User>();
@@ -18,6 +17,21 @@ public class UserList {
 
     public User findUser(String username) {
         return this.users.stream().filter(user -> user.getUsername().equals(username)).findFirst().orElse(null);
+    }
+
+    public void saveToFile(){
+        try {
+            FileOutputStream fos = new FileOutputStream(filename);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            oos.writeObject(this.users);
+
+            oos.flush();
+            oos.close();
+        }
+        catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
     public void loadFromFile(){

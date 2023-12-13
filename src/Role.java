@@ -1,6 +1,6 @@
 public enum Role {
     Manager,
     Cashier,
-    Admin,
+    Owner,
     Customer
 }

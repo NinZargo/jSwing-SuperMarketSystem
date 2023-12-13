@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ProductListCellRenderer extends DefaultListCellRenderer {
-    private ProductList listModel;
+    private final ProductList listModel;
     private static int selectedTab;
 
     public ProductListCellRenderer(ProductList listModel) {

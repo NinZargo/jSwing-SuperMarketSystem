@@ -6,5 +6,5 @@ public enum ProdCat {
     Meat,
     Fruit,
     Technology,
-    Book;
+    Book
 }

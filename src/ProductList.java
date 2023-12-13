@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ProductList extends AbstractListModel<Product> implements Serializable {
     private ArrayList<Product> products;
-    private String filename;
+    private final String filename;
     private static final long serialVersionUID = 1L;
 
     public ProductList(){
